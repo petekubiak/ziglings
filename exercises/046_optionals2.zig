@@ -34,7 +34,6 @@ pub fn main() void {
     // Link the elephants so that each tail "points" to the next.
     linkElephants(&elephantA, &elephantB);
     linkElephants(&elephantB, &elephantC);
-    linkElephants(&elephantC, &elephantA);
 
     // `linkElephants` will stop the program if you try and link an
     // elephant that doesn't exist! Uncomment and see what happens.
@@ -67,6 +66,6 @@ fn visitElephants(first_elephant: *Elephant) void {
 
         // HINT: We want something similar to what `.?` does,
         // but instead of ending the program, we want to exit the loop...
-        e = e.tail ???
+        e = e.tail orelse break;
     }
 }
