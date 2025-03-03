@@ -22,7 +22,7 @@ const std = @import("std");
 
 const Elephant = struct {
     letter: u8,
-    tail: *Elephant = null, // Hmm... tail needs something...
+    tail: ?*Elephant = null, // Hmm... tail needs something...
     visited: bool = false,
 };
 
@@ -34,11 +34,12 @@ pub fn main() void {
     // Link the elephants so that each tail "points" to the next.
     linkElephants(&elephantA, &elephantB);
     linkElephants(&elephantB, &elephantC);
+    linkElephants(&elephantC, &elephantA);
 
     // `linkElephants` will stop the program if you try and link an
     // elephant that doesn't exist! Uncomment and see what happens.
-    // const missingElephant: ?*Elephant = null;
-    // linkElephants(&elephantC, missingElephant);
+    const missingElephant: ?*Elephant = null;
+    linkElephants(&elephantC, missingElephant);
 
     visitElephants(&elephantA);
 
